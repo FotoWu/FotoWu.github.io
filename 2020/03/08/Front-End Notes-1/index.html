@@ -4,69 +4,53 @@
 <li>Use different link methods and ports(http: 80, https:443)</li>
 <li>HTTPS needs CA authentication, which is expensive</li>
 <li>HTTP is stateless</li>
-<li>HTTPS pros and cons<ul>
-<li>pros: security, data integrity</li>
-<li>cons: expensive(SSL authentication), time-consuming, inefficient, IP resources availability(each SSL needs to bind one IP)</li>
-</ul>
-</li>
+<li>HTTPS pros and cons<br> a. pros: security, data integrity<br> b. cons: expensive(SSL authentication), time-consuming, inefficient, IP resources availability(each SSL needs to bind one IP)</li>
 <li>HTTPS Working Approach<br><img src="https://user-images.githubusercontent.com/30313526/76165241-5ce64080-6190-11ea-8952-b37fae816b69.png" alt="https"></li>
 </ol>
-<h3 id="2-WebSocket"><a href="#2-WebSocket" class="headerlink" title="2. WebSocket"></a>2. WebSocket</h3><ul>
+<h3 id="2-WebSocket"><a href="#2-WebSocket" class="headerlink" title="2. WebSocket"></a>2. WebSocket</h3><ol>
 <li>WebSocket is a protocol in HTML5, supporting continuous connection, while HTTP doesn’t support</li>
 <li>WebSocket is based on HTTP protocol</li>
-<li>WebSocket has two attributes “upgrade” and “connection”, when HTTP protocol doesn’t have<pre><code>  GET /chat HTTP/1.1
-  Host: server.example.com
-  Upgrade: websocket
-  Connection: Upgrade
-  Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
-  Sec-WebSocket-Protocol: chat, superchat
-  Sec-WebSocket-Version: 13
-  Origin: http://example.com</code></pre></li>
-</ul>
-<h3 id="3-Web-Quality"><a href="#3-Web-Quality" class="headerlink" title="3. Web Quality"></a>3. Web Quality</h3><ul>
+<li>WebSocket has two attributes “upgrade” and “connection”, when HTTP protocol doesn’t have<pre class=" language-bash"><code class="language-bash"> GET /chat HTTP/1.1
+ Host: server.example.com
+ Upgrade: websocket
+ Connection: Upgrade
+ Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw<span class="token operator">==</span>
+ Sec-WebSocket-Protocol: chat, superchat
+ Sec-WebSocket-Version: 13
+ Origin: http://example.com</code></pre>
+</li>
+</ol>
+<h3 id="3-Web-Quality"><a href="#3-Web-Quality" class="headerlink" title="3. Web Quality"></a>3. Web Quality</h3><ol>
 <li>Accessible website for the disabled</li>
-<li>Using ‘alt’ attribute to show images or sounds according to the browser type<pre><code>  &lt;img src=&quot;person.jpg&quot;  alt=&quot;this is a person&quot;/&gt;</code></pre></li>
-</ul>
-<h3 id="4-Cookie-sessionStorage-and-localStorage"><a href="#4-Cookie-sessionStorage-and-localStorage" class="headerlink" title="4. Cookie, sessionStorage and localStorage"></a>4. Cookie, sessionStorage and localStorage</h3><ul>
+<li>Using ‘alt’ attribute to show images or sounds according to the browser type<pre class=" language-bash"><code class="language-bash"> <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"person.jpg"</span>  alt<span class="token operator">=</span><span class="token string">"this is a person"</span>/<span class="token operator">></span></code></pre>
+</li>
+</ol>
+<h3 id="4-Cookie-sessionStorage-and-localStorage"><a href="#4-Cookie-sessionStorage-and-localStorage" class="headerlink" title="4. Cookie, sessionStorage and localStorage"></a>4. Cookie, sessionStorage and localStorage</h3><ol>
 <li>Similarity: all stored in the browser, same root</li>
-<li>Cookie<ul>
-<li>stored in the http request</li>
-<li>small size, about 4KB</li>
-<li>store user log status(set expired time)</li>
-<li>track user behavior(humanity)</li>
-<li>store sessionID to identify users</li>
-</ul>
-</li>
-<li>sessionStorage<ul>
-<li>keep until the session ends(say a browser is closed)</li>
-</ul>
-</li>
-<li>localStorage<ul>
-<li>keep forever</li>
-<li>shared among all windows of the same root</li>
-</ul>
-</li>
-</ul>
-<h3 id="5-Web-Worker"><a href="#5-Web-Worker" class="headerlink" title="5. Web Worker"></a>5. Web Worker</h3><ul>
+<li>Cookie<br> a. stored in the http request<br> b. small size, about 4KB<br> c. store user log status(set expired time)<br> d. track user behavior(humanity)<br> e. store sessionID to identify users</li>
+<li>sessionStorage<br> keep until the session ends(say a browser is closed)</li>
+<li>localStorage<br> a. keep forever<br> b. shared among all windows of the same root</li>
+</ol>
+<h3 id="5-Web-Worker"><a href="#5-Web-Worker" class="headerlink" title="5. Web Worker"></a>5. Web Worker</h3><ol>
 <li>independent script</li>
 <li>return result by <em>postMessage</em> to the main thread</li>
 <li>won’t block the main thread</li>
-</ul>
-<h3 id="6-Cookie-Prevent-XSS-Attack"><a href="#6-Cookie-Prevent-XSS-Attack" class="headerlink" title="6.Cookie Prevent XSS Attack"></a>6.Cookie Prevent XSS Attack</h3><ul>
+</ol>
+<h3 id="6-Cookie-Prevent-XSS-Attack"><a href="#6-Cookie-Prevent-XSS-Attack" class="headerlink" title="6.Cookie Prevent XSS Attack"></a>6.Cookie Prevent XSS Attack</h3><ol>
 <li>Add <em>set-cookie</em> to the http header</li>
 <li>httponly: ban access to cookie from javascript</li>
 <li>secure: only send cookie when the request is https</li>
-</ul>
+</ol>
 <h3 id="7-RESTful"><a href="#7-RESTful" class="headerlink" title="7. RESTful"></a>7. RESTful</h3><ul>
-<li>locate resources using URL</li>
-<li>describe operations using HTTP</li>
+<li>locate resources using URL and describe operations using HTTP</li>
 </ul>
-<h3 id="8-addEventListender"><a href="#8-addEventListender" class="headerlink" title="8. addEventListender()"></a>8. addEventListender()</h3><ul>
+<h3 id="8-addEventListender"><a href="#8-addEventListender" class="headerlink" title="8. addEventListender()"></a>8. addEventListender()</h3><ol>
 <li>event =&gt; the name of event</li>
 <li>function =&gt; the function to execute after the event is triggerred</li>
-<li>useCapture =&gt; the event execute in capture or bubble phase<pre><code>  addEventListener(event, function, useCapture)</code></pre></li>
-</ul>
-<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="1-Box-Model"><a href="#1-Box-Model" class="headerlink" title="1. Box Model"></a>1. Box Model</h3><ul>
+<li>useCapture =&gt; the event execute in capture or bubble phase<pre class=" language-bash"><code class="language-bash"> addEventListener<span class="token punctuation">(</span>event, function, useCapture<span class="token punctuation">)</span></code></pre>
+</li>
+</ol>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="1-Box-Model"><a href="#1-Box-Model" class="headerlink" title="1. Box Model"></a>1. Box Model</h3><ol>
 <li><p>box-sizing：border-box,padding-box,content-box.</p>
 </li>
 <li><p>Width definition decides the type of box model</p>
@@ -78,51 +62,24 @@
 <img width="620" alt="IE_box" src="https://user-images.githubusercontent.com/30313526/76165747-81441c00-6194-11ea-985e-fa2421f495fb.png">
 
 </li>
-</ul>
-<h3 id="2-Transition-and-Animation"><a href="#2-Transition-and-Animation" class="headerlink" title="2. Transition and Animation"></a>2. Transition and Animation</h3><ul>
+</ol>
+<h3 id="2-Transition-and-Animation"><a href="#2-Transition-and-Animation" class="headerlink" title="2. Transition and Animation"></a>2. Transition and Animation</h3><ol>
 <li>Both change elements by time</li>
 <li>Transition changes elements only when an event is triggerred, but animation doesn’t need a triggerred event</li>
 <li>Transition: 2 frames(?) from…to</li>
 <li>Animation: 1 frame</li>
-</ul>
-<h3 id="3-Flex-Layout"><a href="#3-Flex-Layout" class="headerlink" title="3. Flex Layout"></a>3. Flex Layout</h3><ul>
-<li>container attributes and item attributes<ul>
-<li>container attr<ul>
-<li>flex-direction</li>
-<li>flex-wrap</li>
-<li>flex-flow</li>
-<li>justify-content: horizontal</li>
-<li>aligh-items: vertical</li>
-</ul>
-</li>
-<li>item attr<ul>
-<li>order</li>
-<li>flex-grow</li>
-<li>flex-shrink</li>
-<li>flex-basis</li>
-<li>flex: abbr for {flex-grow, flex-shrink, flex-basis}, default by {0, 1, auto}</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="1-Definition"><a href="#1-Definition" class="headerlink" title="1. Definition"></a>1. Definition</h3><ul>
+</ol>
+<h3 id="3-Flex-Layout"><a href="#3-Flex-Layout" class="headerlink" title="3. Flex Layout"></a>3. Flex Layout</h3><p>container attributes and item attributes</p>
+<ol>
+<li>container attr<br> a. flex-direction<br> b. flex-wrap<br> c. flex-flow<br> d. justify-content: horizontal<br> e. aligh-items: vertical</li>
+<li>item attr<br> a. order<br> b. flex-grow<br> c. flex-shrink<br> d. flex-basis<br> e. flex: abbr for {flex-grow, flex-shrink, flex-basis}, default by {0, 1, auto}</li>
+</ol>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="1-Definition"><a href="#1-Definition" class="headerlink" title="1. Definition"></a>1. Definition</h3><ol>
 <li>a dynamic, weakly typed, object-orientation interpreted language</li>
-<li>contains three parts<ul>
-<li>ECMAScript: provide kernel function</li>
-<li>DOM: Document Object Model, provide methods and interfaces to access and operate webpages</li>
-<li>BOM: Browser Object Model, provide methods and interfaces to interact with the browser</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-Features"><a href="#2-Features" class="headerlink" title="2. Features"></a>2. Features</h3><ul>
+<li>contains three parts<br> a. ECMAScript: provide kernel function<br> b. DOM: Document Object Model, provide methods and interfaces to access and operate webpages<br> c. BOM: Browser Object Model, provide methods and interfaces to interact with the browser</li>
+</ol>
+<h3 id="2-Features"><a href="#2-Features" class="headerlink" title="2. Features"></a>2. Features</h3><ol>
 <li>Case sensitive</li>
-<li>Reserved Words<ul>
-<li>KeyWord</li>
-<li>FutureReservedWord</li>
-<li>NullLiteral</li>
-<li>BooleanLiteral</li>
-</ul>
-</li>
-</ul>
+<li>Reserved Words<br> a. KeyWord<br> b. FutureReservedWord<br> c. NullLiteral<br> d. BooleanLiteral</li>
+</ol>
 </article><br><br><span class="next-post"><a href="/2020/01/11/hello-world/" itemprop="url">Older Post ⇒</a></span><span class="prev-post"><a href="/2020/03/08/Title-2/" itemprop="url">⇐ Next Post </a></span><br><br><br></main></body></html>
