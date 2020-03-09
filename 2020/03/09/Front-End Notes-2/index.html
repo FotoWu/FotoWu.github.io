@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Front-End Notes 2 | Geek Home</title><meta name="description"><meta name="generator" content="Geek Home"><meta name="author" content="Wu Daoyi"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Geek Home" title="Geek Home" itemprop="headline">Geek Home</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">Front-End Notes 2</h1><span class="post-meta"></span><br><br><h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="1-Variable"><a href="#1-Variable" class="headerlink" title="1.Variable"></a>1.Variable</h3><ol>
+<li>What is weakly-typed?</li>
+</ol>
+<ul>
+<li>ANS: declare without specific type and the availability of modifying type in assignment</li>
+</ul>
+<ol start="2">
+<li>What is variable scope?</li>
+</ol>
+<ul>
+<li>ANS: the defining block of this variable in source code</li>
+<li>Including: global scope and functional scope(local)</li>
+</ul>
+<ol start="3">
+<li>What is Hoisting?</li>
+</ol>
+<ul>
+<li>ANS: Variables can be used before they are declared, all of the declared variables are taken on the top of the function<br>(function is also hoisting)</li>
+</ul>
+<ol start="4">
+<li>Attribute Variable</li>
+</ol>
+<ul>
+<li><p>When declaring a global variable, we actually define an attribute for the global object “window”, and this variable cannot be deleted using “delete” if it has been declared using “var”.</p>
+<pre class=" language-bash"><code class="language-bash">  var xiaoqiang <span class="token operator">=</span> 1<span class="token punctuation">;</span>
+  console.log<span class="token punctuation">(</span>xiaoqiang,window.xiaoqiang<span class="token punctuation">)</span><span class="token punctuation">;</span>//1 1
+  delete xiaoqiang<span class="token punctuation">;</span>//false
+  console.log<span class="token punctuation">(</span>xiaoqiang,window.truevar<span class="token punctuation">)</span><span class="token punctuation">;</span>//1 1</code></pre>
+</li>
+<li><p>In ECMAScript, the global variable is the attribute of global object, and the local variable is the attribute of some object called in the function. It is called declarative environment record in ECMAScript5. Also, JavaScript allows to use “this” to refer global object.</p>
+</li>
+</ul>
+<h3 id="2-Expression"><a href="#2-Expression" class="headerlink" title="2.Expression"></a>2.Expression</h3><ol>
+<li><p>Primary Expression</p>
+<ul>
+<li>this</li>
+<li>Identifier </li>
+<li>Literal</li>
+<li>ArrayLiteral</li>
+<li>ObjectLiteral</li>
+</ul>
+</li>
+<li><p>Member Expression</p>
+<ul>
+<li>consists of primary expression and operator</li>
+<li>including attribute access expression, object initiation expression and function expression<pre class=" language-bash"><code class="language-bash">  MemberExpression <span class="token keyword">:</span> 
+  MemberExpression <span class="token punctuation">[</span> Expression <span class="token punctuation">]</span> 
+  MemberExpression <span class="token keyword">.</span> IdentifierName 
+  new MemberExpression Arguments
+  FunctionExpression </code></pre>
+</li>
+<li>object initiation expression<pre class=" language-bash"><code class="language-bash">  new Object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  new Point<span class="token punctuation">(</span>2,3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  // <span class="token punctuation">(</span><span class="token punctuation">)</span> can be omitted /if no arguments required
+  new Object<span class="token punctuation">;</span></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-Garbage-Collection"><a href="#3-Garbage-Collection" class="headerlink" title="3.Garbage Collection"></a>3.Garbage Collection</h3><ol>
+<li><p>Memory Life Cycle</p>
+<p> <img src="https://user-images.githubusercontent.com/30313526/76233888-d9961f00-6263-11ea-9c33-48b1710fa8eb.png" alt="memory_lifecycle"></p>
+</li>
+<li><p>Storage</p>
+<p> a. simple data are stored in <em>stack</em>, in order to improve the query of variable<br> b. complex data size can be modified, so they are stored in <em>heap</em> instead of stack. Meanwhile, they store a pointer in the stack to point to their location in memory</p>
+<p> <img src="https://user-images.githubusercontent.com/30313526/76234433-b1f38680-6264-11ea-8180-ca9f3a759629.gif" alt="JS_ECMA_grammer_stackAndHeap"></p>
+<p> c. release memory: mark-and-sweep and reference counter(can cause memory leak)</p>
+<p> d. mark-and-sweep</p>
+ <img width="486" alt="mark-and-sweep" src="https://user-images.githubusercontent.com/30313526/76235017-74432d80-6265-11ea-9484-d8a3e7e22728.png">
+
+<p> e. dereferencing: set global variable or object to null(local variables are automatically deferenced after leaving the context)</p>
+<pre class=" language-bash"><code class="language-bash"> <span class="token keyword">function</span> createPerson<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">{</span>
+ var localPerson <span class="token operator">=</span> new Object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ localPerson.name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+ <span class="token keyword">return</span> localPerson<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+ var globalPerson <span class="token operator">=</span> createPerson<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ globalPerson <span class="token operator">=</span> null<span class="token punctuation">;</span></code></pre>
+<p> f. dereferencing != release memory</p>
+</li>
+</ol>
+<h3 id="4-GET-and-POST"><a href="#4-GET-and-POST" class="headerlink" title="4.GET and POST"></a>4.GET and POST</h3><ol>
+<li><p>HTTP doesn’t restrict the length of GET and POST, the browser and the web server restricts the length of URI</p>
+</li>
+<li><p>GET can use cache, because it doesn’t have to connect to the database to get data, however, POST needs because it modifies or deletes something in database</p>
+</li>
+</ol>
+<h3 id="5-Closure"><a href="#5-Closure" class="headerlink" title="5.Closure"></a>5.Closure</h3><ol>
+<li><p>Concept: a combination of Function and Reference to its lexical environment</p>
+</li>
+<li><p>Clousures allow the inner function to visit the outer function scope</p>
+</li>
+<li><p>Closures are created once functions are initiated</p>
+</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> init<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    var name <span class="token operator">=</span> <span class="token string">"Mozilla"</span><span class="token punctuation">;</span> // name is a local variable init<span class="token punctuation">(</span><span class="token punctuation">)</span> creates
+    <span class="token keyword">function</span> displayName<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> // displayName<span class="token punctuation">(</span><span class="token punctuation">)</span> is an inner function<span class="token punctuation">(</span>closure<span class="token punctuation">)</span>
+        alert<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> // used variable <span class="token keyword">in</span> parent <span class="token keyword">function</span>
+    <span class="token punctuation">}</span>
+    displayName<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+init<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="6-Class"><a href="#6-Class" class="headerlink" title="6.Class"></a>6.Class</h3><ol>
+<li><p>Class Creation</p>
+<p> a. ES5 and Earlier version</p>
+<pre class=" language-bash"><code class="language-bash"> // Animal Class
+ <span class="token keyword">function</span> Animal <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+ // Attribute
+ this.name <span class="token operator">=</span> name <span class="token operator">||</span> <span class="token string">'Animal'</span><span class="token punctuation">;</span>
+
+ // Instance method
+ this.sleep <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+ console.log<span class="token punctuation">(</span>this.name + <span class="token string">'is sleeping!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+
+ // Prototype method
+
+ Animal.prototype.eat <span class="token operator">=</span> function<span class="token punctuation">(</span>food<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ console.log<span class="token punctuation">(</span>this.name + <span class="token string">'is eating: '</span> + food<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p> b. ES6</p>
+<pre class=" language-bash"><code class="language-bash"> class Point <span class="token punctuation">{</span>
+ constructor<span class="token punctuation">(</span>x, y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     this.x <span class="token operator">=</span> x<span class="token punctuation">;</span>
+     this.y <span class="token operator">=</span> y<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+ toString<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">return</span> <span class="token string">'('</span> + this.x + <span class="token string">', '</span> + this.y + <span class="token string">')'</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>Class Inheritance</p>
+</li>
+</ol>
+<p>a. ES5: Prototypal Inheriatance, Constructor Inheritance, Combined Inheritance, Parasitic Inheritance</p>
+<ul>
+<li><p>Prototypal Inheriatance: prototype =&gt; new an empty object =&gt; Father class, can’t implement multiple inheritance</p>
+<pre class=" language-bash"><code class="language-bash">  <span class="token keyword">function</span> Cat<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">}</span>
+  Cat.prototype <span class="token operator">=</span> new Animal<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Cat.prototype.name <span class="token operator">=</span> <span class="token string">'cat'</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>Constructor Inheritance: copy father instance to child, not use prototype, can implement multiple inheritance</p>
+<pre class=" language-bash"><code class="language-bash">  <span class="token keyword">function</span> Cat<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  Animal.call<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  this.name <span class="token operator">=</span> name <span class="token operator">||</span> <span class="token string">'Tom'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>Combined Inheritance: call father constructor twice</p>
+<pre class=" language-bash"><code class="language-bash">  <span class="token keyword">function</span> Cat<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  Animal.call<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  this.name <span class="token operator">=</span> name <span class="token operator">||</span> <span class="token string">'Tom'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  Cat.prototype <span class="token operator">=</span> new Animal<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Cat.prototype.constructor <span class="token operator">=</span> Cat<span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>Parasitic Inheritance: create a class with no instance method</p>
+<pre class=" language-bash"><code class="language-bash">  <span class="token keyword">function</span> Cat<span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  Animal.call<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  this.name <span class="token operator">=</span> name <span class="token operator">||</span> <span class="token string">'Tom'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token punctuation">(</span>function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      var Super <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+      Super.prototype <span class="token operator">=</span> Animal.prototype<span class="token punctuation">;</span>
+      Cat.prototype <span class="token operator">=</span> new Super<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ul>
+<p>b. ES6: use of ‘extends’ keyword</p>
+<pre class=" language-bash"><code class="language-bash">class Point <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+class ColorPoint extends Point <span class="token punctuation">{</span>
+    constructor<span class="token punctuation">(</span>x, y, color<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    super<span class="token punctuation">(</span>x, y<span class="token punctuation">)</span><span class="token punctuation">;</span> // call constructor<span class="token punctuation">(</span>x, y<span class="token punctuation">)</span> from father
+    this.color <span class="token operator">=</span> color<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  toString<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> this.color + <span class="token string">' '</span> + super.toString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> // call toString<span class="token punctuation">(</span><span class="token punctuation">)</span> from father
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="7-How-to-handle-with-asynchronous-callback-hell"><a href="#7-How-to-handle-with-asynchronous-callback-hell" class="headerlink" title="7.How to handle with asynchronous callback hell"></a>7.How to handle with asynchronous callback hell</h3><ul>
+<li>ANS: Promise, generator, async/await</li>
+</ul>
+<h3 id="8-Event-Stream"><a href="#8-Event-Stream" class="headerlink" title="8.Event Stream"></a>8.Event Stream</h3><p>addEventListener(event, function, useCapture)<br>    - Capture<br>    - OnTarget<br>    - Bubble</p>
+<h3 id="9-Event-Delegation"><a href="#9-Event-Delegation" class="headerlink" title="9.Event Delegation"></a>9.Event Delegation</h3><p>add event listener on the parent element to listen to both parent and its child elements event<br>    - e.g. &lt;ul&gt; tag and &lt;li&gt; tag<br>    - suitable for binding the dynamic element</p>
+<h3 id="10-Lazyload-V-S-Preload"><a href="#10-Lazyload-V-S-Preload" class="headerlink" title="10.Lazyload V.S. Preload"></a>10.Lazyload V.S. Preload</h3><ol>
+<li><p>lazyload: reduce or delay the request number to optimize the front end</p>
+</li>
+<li><p>preload: load images in advance</p>
+</li>
+</ol>
+<h3 id="11-Mouseover-V-S-Mouseenter"><a href="#11-Mouseover-V-S-Mouseenter" class="headerlink" title="11. Mouseover V.S. Mouseenter"></a>11. Mouseover V.S. Mouseenter</h3><ol>
+<li><p>mouseover: while mouse move in the element or its child element, the event is triggerred, opposite is <em>mouseout</em></p>
+</li>
+<li><p>mouseenter: while mouse moves in the element itself(without its child element), the event is triggerred, opposite is <em>mouseleave</em></p>
+</li>
+</ol>
+<h3 id="12-new-operator"><a href="#12-new-operator" class="headerlink" title="12. new operator"></a>12. new operator</h3><ol>
+<li><p>creates an empty object that points to the function prototype</p>
+</li>
+<li><p>returns the object after executing constructor function</p>
+</li>
+</ol>
+<h3 id="13-How-to-change-the-pointer-function-of-this"><a href="#13-How-to-change-the-pointer-function-of-this" class="headerlink" title="13. How to change the pointer function of this"></a>13. How to change the pointer function of <em>this</em></h3><ol>
+<li>apply(obj, array)</li>
+<li>call(obj, arg1, arg2, …)</li>
+<li>bind: returns a new function</li>
+</ol>
+</article><br><br><span class="next-post"><a href="/2020/03/08/Front-End Notes-1/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
