@@ -211,6 +211,16 @@ class ColorPoint extends Point <span class="token punctuation">{</span>
 <h3 id="13-How-to-change-the-pointer-function-of-this"><a href="#13-How-to-change-the-pointer-function-of-this" class="headerlink" title="13. How to change the pointer function of this"></a>13. How to change the pointer function of <em>this</em></h3><ol>
 <li>apply(obj, array)</li>
 <li>call(obj, arg1, arg2, …)</li>
-<li>bind: returns a new function</li>
+<li>bind: returns a new function<pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> bindThis<span class="token punctuation">(</span>oTarget, f<span class="token punctuation">)</span><span class="token punctuation">{</span>
+ if<span class="token punctuation">(</span>f.bind<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token keyword">return</span> f.bind<span class="token punctuation">(</span>oTarget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ else<span class="token punctuation">{</span>
+     <span class="token keyword">return</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> f.apply<span class="token punctuation">(</span>oTarget, arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
 </ol>
-</article><br><br><span class="next-post"><a href="/2020/03/08/Front-End Notes-1/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
+</article><br><br><span class="next-post"><a href="/2020/03/08/Front-End Notes-1/" itemprop="url">Older Post ⇒</a></span><span class="prev-post"><a href="/2020/03/11/Front-End-Notes-3/" itemprop="url">⇐ Next Post </a></span><br><br><br></main></body></html>
