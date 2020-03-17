@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Front-End Notes-4 | Geek Home</title><meta name="description"><meta name="generator" content="Geek Home"><meta name="author" content="Wu Daoyi"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Geek Home" title="Geek Home" itemprop="headline">Geek Home</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">Front-End Notes-4</h1><span class="post-meta"></span><br><br><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="1-Caching"><a href="#1-Caching" class="headerlink" title="1. Caching"></a>1. Caching</h3><p>a. Force Caching &amp; Negotiation Caching</p>
+<table>
+<thead>
+<tr>
+<th>Cache Type</th>
+<th>Resource Approach</th>
+<th>Status Code</th>
+<th>Send Request to Server</th>
+<th>Related Field</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Force Caching</td>
+<td>Get from cache</td>
+<td>200(from cache)</td>
+<td>No, get from cache directly</td>
+<td>cache-control &gt; expires</td>
+</tr>
+<tr>
+<td>Negotiation Caching</td>
+<td>Get from cache</td>
+<td>304(not modified)</td>
+<td>Yes, whether cache is available is informed by server</td>
+<td>Last-Modified/If-Modified-Since, Etag/If-None-Match</td>
+</tr>
+</tbody></table>
+<p>b. Process</p>
+<p><img src="https://user-images.githubusercontent.com/30313526/76827111-0399a380-6859-11ea-83f9-378021702c61.png" alt="caching"></p>
+<h3 id="2-HTTP-Method"><a href="#2-HTTP-Method" class="headerlink" title="2. HTTP Method"></a>2. HTTP Method</h3><p>GET, POST, HEAD, OPTIONS, PUT, DELETE, TRACE, CONNECT</p>
+<h3 id="3-Status-Code"><a href="#3-Status-Code" class="headerlink" title="3. Status Code"></a>3. Status Code</h3><table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Meaning</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>OK</td>
+<td>Request successfully, used in GET and POST</td>
+</tr>
+<tr>
+<td>301</td>
+<td>Move Permanently</td>
+<td>Requested resource is moved to new URI permanently, return new URI for browser to automatically redirect</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found</td>
+<td>Requested resource is moved to new URI temporarily</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified</td>
+<td>Requested resource is not modified, return no resource</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Request contains grammar error which server can’t understand</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Requires user identity authentication</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>Refuses the request</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>Server cannot find resource according to the clinet request</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>Server internal error, can’t finish the request</td>
+</tr>
+</tbody></table>
+<h3 id="4-What-happened-when-inputing-a-URL-to-display-the-webpage"><a href="#4-What-happened-when-inputing-a-URL-to-display-the-webpage" class="headerlink" title="4. What happened when inputing a URL to display the webpage?"></a>4. What happened when inputing a URL to display the webpage?</h3><p>a. Find Server IP<br>    - in cache: Browser =&gt; System =&gt; Router<br>    - in hosts<br>    - in DNS</p>
+<p>b. constructs a http request based on IP and port number</p>
+<p>c. encapsulates http request in a TCP package</p>
+<p>d. transfer the TCP package through Transport Layer, Network Layer, Datalink Layer and Physical Layer to server</p>
+<p>e. server interpretes the package and send s out response(html) to the client</p>
+<p>f. client constructs DOM tree and CSSOM tree based on the returned html</p>
+<p>g. render JavaScript</p>
+<h3 id="5-HTTP-Header"><a href="#5-HTTP-Header" class="headerlink" title="5. HTTP Header"></a>5. HTTP Header</h3><p>a. general header: e.g. date</p>
+<p>b. request header: e.g. cookie, if-Modified-Since</p>
+<p>c. response header: e.g. set-cookie, location</p>
+<p>d. content header: e.g. allow, content-type, content-encoding</p>
+<h3 id="6-Cache-control"><a href="#6-Cache-control" class="headerlink" title="6. Cache-control"></a>6. Cache-control</h3><p>Values: private(default), no-cache, max-age, must-revalidate</p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="1-Draw-Triangle"><a href="#1-Draw-Triangle" class="headerlink" title="1. Draw Triangle"></a>1. Draw Triangle</h3><p>Equal Border:</p>
+<pre class=" language-bash"><code class="language-bash">div <span class="token punctuation">{</span>
+width:0px<span class="token punctuation">;</span>
+height:0px<span class="token punctuation">;</span>
+border-top:10px solid red<span class="token punctuation">;</span>
+border-right:10px solid transparent<span class="token punctuation">;</span>
+border-bottom:10px solid transparent<span class="token punctuation">;</span>
+border-left:10px solid transparent<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="2-Background-color"><a href="#2-Background-color" class="headerlink" title="2. Background-color"></a>2. Background-color</h3><p>fill in <em>content, padding, border</em> with color</p>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="1-Array-method"><a href="#1-Array-method" class="headerlink" title="1. Array method"></a>1. Array method</h3><p><code>push() pop() shift() unshift() splice() sort() reverse() map()</code></p>
+<h3 id="2-Delete-Array-duplicate"><a href="#2-Delete-Array-duplicate" class="headerlink" title="2. Delete Array duplicate"></a>2. Delete Array duplicate</h3><p>a. indexOf() in for-loop</p>
+<p>b. ES6 Set: Array.from(new Set(array))</p>
+<p>c. Object (key, value) pair: set key of Object as value of Array, if Object[value1] = true, when Object[value2] = true, duplicate exists</p>
+<h3 id="3-How-to-tell-an-array"><a href="#3-How-to-tell-an-array" class="headerlink" title="3. How to tell an array"></a>3. How to tell an array</h3><p>a. Object.prototype.toString.call([1, 2, 3])</p>
+<p>b. instanceof</p>
+<h3 id="4-Webpack"><a href="#4-Webpack" class="headerlink" title="4. Webpack"></a>4. Webpack</h3><p>Webpack is a static module bundler of modern JavaScript applications. It constructs a dependency graph recursively, including each module in app. Then it packs these modules into one bundle or multiple bundles.</p>
+<h3 id="5-Deep-Clone"><a href="#5-Deep-Clone" class="headerlink" title="5. Deep Clone"></a>5. Deep Clone</h3><pre class=" language-bash"><code class="language-bash">var deepCopy <span class="token operator">=</span> function<span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    if<span class="token punctuation">(</span>typeof obj <span class="token operator">!=</span><span class="token operator">=</span> <span class="token string">'object'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    var newObj <span class="token operator">=</span> obj instanceof Array ? <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    for<span class="token punctuation">(</span>var key <span class="token keyword">in</span> obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        if<span class="token punctuation">(</span>obj.hasOwnProperty<span class="token punctuation">(</span>key<span class="token punctuation">))</span> <span class="token punctuation">{</span>
+            newObj<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> typeof obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'object'</span> ? deepCopy<span class="token punctuation">(</span>obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">:</span> obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> newObj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="6-this-point"><a href="#6-this-point" class="headerlink" title="6. this point"></a>6. this point</h3><p>a. default binding: this binds to window in global environment</p>
+<p>b. implicit binding: this binds to the object where function that includes it</p>
+<p>c. implicit dropping: lose object of function that is implicitly bound</p>
+<p>d. explicit binding: use call(), apply(), bind() to bind object to this</p>
+<p>e. new binding</p>
+</article><br><br><span class="next-post"><a href="/2020/03/11/Front-End-Notes-3/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
