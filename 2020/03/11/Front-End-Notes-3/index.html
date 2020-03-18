@@ -142,7 +142,7 @@ img<span class="token punctuation">{</span>
 <p>b. overflow: hidden / auto</p>
 <p>c. :after</p>
 <p>*the display attribute of float element: {display: block}</p>
-<h3 id="6-What-is-BFC"><a href="#6-What-is-BFC" class="headerlink" title="6. What is BFC?"></a>6. What is BFC?</h3><p>ANS: Block Formatting Context<br>-Definition: A block formatting context contains everything inside of the element creating it that is not also inside a descendant element that creates a new block formatting context.<br>-One element can’t exist in two different BFC at the same time.<br>-In the following code, <code>#div_1</code> creates a <code>.BFC_1</code>, containing <code>#div_2</code>, <code>#div_3</code>, <code>#div_4</code>, <code>#div_5</code>. Because <code>#div_5</code>creates another BFC_2, <code>#div_6</code> and <code>#div_7</code> are excluded from <code>.BFC</code></p>
+<h3 id="6-What-is-BFC"><a href="#6-What-is-BFC" class="headerlink" title="6. What is BFC?"></a>6. What is BFC?</h3><p>ANS: Block Formatting Context<br>-Definition: A block formatting context contains everything inside of the element creating it that is not also inside a descendant element that creates a new block formatting context.<br>-One element can’t exist in two different BFC at the same time.<br>-In the following code, <code>#div_1</code> creates a <code>.BFC_1</code>, containing <code>#div_2</code>, <code>#div_3</code>, <code>#div_4</code>, <code>#div_5</code>. Because <code>#div_5</code>creates another BFC_2, <code>#div_6</code> and <code>#div_7</code> are excluded from <code>.BFC_1</code></p>
 <pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">'div_1'</span> class<span class="token operator">=</span><span class="token string">'BFC_1'</span><span class="token operator">></span>
     <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">'div_2'</span><span class="token operator">></span>
         <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">'div_3'</span><span class="token operator">></span><span class="token operator">&lt;</span>/div<span class="token operator">></span>
@@ -154,6 +154,6 @@ img<span class="token punctuation">{</span>
     <span class="token operator">&lt;</span>/div<span class="token operator">></span>
 <span class="token operator">&lt;</span>/div<span class="token operator">></span></code></pre>
 <h3 id="7-z-index"><a href="#7-z-index" class="headerlink" title="7. z-index"></a>7. z-index</h3><p>a. specifies the stack order of an element.</p>
-<p>b. the greater stack order, the more the element is in front of others</p>
+<p>b. the greater stack order, the nearest the element is to users</p>
 <p>c. only works on positioned elements (position: absolute, position: relative, position: fixed, or position: sticky).</p>
 </article><br><br><span class="next-post"><a href="/2020/03/09/Front-End Notes-2/" itemprop="url">Older Post ⇒</a></span><span class="prev-post"><a href="/2020/03/17/Front-End-Notes-4/" itemprop="url">⇐ Next Post </a></span><br><br><br></main></body></html>
