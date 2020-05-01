@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Front-End-Notes-5 | Geek Home</title><meta name="description"><meta name="generator" content="Geek Home"><meta name="author" content="Wu Daoyi"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Geek Home" title="Geek Home" itemprop="headline">Geek Home</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">Front-End-Notes-5</h1><span class="page-tag-anchor"><a href="/tags/JavaScript, Regular Expression" itemprop="url">#JavaScript, Regular Expression
+&nbsp;&nbsp;</a></span><span class="post-meta"></span><br><br><h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="1-Regular-Expression"><a href="#1-Regular-Expression" class="headerlink" title="1. Regular Expression"></a>1. Regular Expression</h3><h4 id="a-Meta-character"><a href="#a-Meta-character" class="headerlink" title="a. Meta-character"></a>a. Meta-character</h4><pre><code>() [] {} \ ^ $ | ? * + . </code></pre><pre><code>Meta-character         名称              匹配对象
+.             点号               单个任意字符(除回车\r、换行\n、行分隔符\u2028和段分隔符\u2029外)
+[]            字符组             列出的单个任意字符
+[^]           排除型字符组        未列出的单个任意字符
+?             问号               匹配0次或1次
+*             星号               匹配0次或多次
++             加号               匹配1次或多次
+{min,max}     区间量词            匹配至少min次，最多max次
+^             脱字符             行的起始位置
+$             美元符             行的结束位置
+|             竖线               分隔两边的任意一个表达式
+()            括号               限制多选结构的范围，标注量词作用的元素，为反向引用捕获文本
+\1,\2...      反向引用            匹配之前的第一、第二...组括号内的表达式匹配的文本</code></pre><h4 id="b-Escape"><a href="#b-Escape" class="headerlink" title="b. Escape: \"></a>b. Escape: \</h4><ul>
+<li><p>Meta-character: \+, \?, … except for ] and }</p>
+</li>
+<li><p>Non-meta-character: represents characters that cannot be printed out</p>
+</li>
+</ul>
+<pre><code>\0        NUL字符\u0000
+[\b]      匹配退格符\u0008，不要与\b混淆
+\t        制表符\u0009
+\n        换行符\u000A
+\v        垂直制表符\u000B
+\f        换页符\u000C
+\r        回车符\u000D
+\xnn      由十六进制数nn指定的拉丁字符
+\uxxxx    由十六进制数xxxx指定的Unicode字符(\u4e00-\u9fa5代表中文)  
+\cX       控制字符^X，表示ctrl-[X]，其中的X是A-Z之中任一个英文字母，用来匹配控制字符</code></pre><h4 id="c-Character-Class"><a href="#c-Character-Class" class="headerlink" title="c. Character Class: []"></a>c. Character Class: []</h4><p><strong>/[9-0]/</strong>: Wrong, because ‘-‘ is decided on the sequence of ASCII code</p>
+<pre><code>/[0-9a-zA-Z]/;  //匹配数字、大写字母和小写字母
+/[0-9a-fA-F]/;  //匹配数字，大、小写形式的a-f，用来验证十六进制字符</code></pre><h4 id="d-Exclude"><a href="#d-Exclude" class="headerlink" title="d. Exclude: ^"></a>d. Exclude: ^</h4><p>Definition: 排除型字符组，在左方括号后紧跟一个脱字符’^’表示(<em>[^]</em>)，表示在当前位置匹配一个没有列出的字符</p>
+<p>Examples</p>
+<pre><code>[^0-9]: Represents the Characters excluding 0-9
+[^a-zA-Z]: Represents the Characters excluding letters</code></pre><p><strong>Shorthands</strong></p>
+<p>Definition: </p>
+<p>用[0-9]、[a-z]等字符组，可以很方便地表示数字字符和小写字母字符。对于这类常用字符组，正则表达式提供了更简单的记法，这就是字符组简记(shorthands)</p>
+<p>Examples</p>
+<p>常见的字符组简记有\d、\w、\s。其中d表示(digit)数字，w表示(word)单词，s表示(space)空白</p>
+<p>正则表达式也提供了对应排除型字符组的简记法：\D、\W、\S。字母完全相同，只是改为大写，这些简记法匹配的字符互补</p>
+<pre><code>\d     数字，等同于[0-9]
+\D     非数字，等同于[^0-9]
+\s     空白字符，等同于[\f\n\r\t\u000B\u0020\u00A0\u2028\u2029]
+\S     非空白字符，等同于[^\f\n\r\t\u000B\u0020\u00A0\u2028\u2029]
+\w     字母、数字、下划线，等同于[0-9A-Za-z_](汉字不属于\w)
+\W     非字母、数字、下划线，等同于[^0-9A-Za-z_]</code></pre><h4 id="e-Quantifier"><a href="#e-Quantifier" class="headerlink" title="e. Quantifier: {}"></a>e. Quantifier: {}</h4><p>Definition</p>
+<pre><code>{n}       匹配n次
+{n,m}     匹配至少n次，最多m次
+{n,}      匹配至少n次
+?         相当于{0,1}
+*         相当于{0,}
++         相当于{1,}</code></pre><ul>
+<li><p>Greedy Quatifier(by default): 匹配到下一个字符不满足匹配规则为止</p>
+</li>
+<li><p>Lazy Quantifier: 在量词后加问号’?’表示，表示尽可能少的匹配，一旦条件满足就再不往下匹配</p>
+</li>
+</ul>
+<p>Definition:</p>
+<pre><code>{n}?       匹配n次
+{n,m}?     匹配至少n次，最多m次
+{n,}?      匹配至少n次
+??         相当于{0,1}
+*?         相当于{0,}
++?         相当于{1,}</code></pre><h4 id="f-Bracket"><a href="#f-Bracket" class="headerlink" title="f. Bracket: ()"></a>f. Bracket: ()</h4><ul>
+<li>Grouping</li>
+</ul>
+<p>Examples:</p>
+<pre><code>console.log(/(ab){2}/.test(&#39;abab&#39;));//true
+console.log(/(ab){2}/.test(&#39;abb&#39;));//false
+console.log(/ab{2}/.test(&#39;abab&#39;));//false
+console.log(/ab{2}/.test(&#39;abb&#39;));//true</code></pre><p>Email</p>
+<pre><code>var email = \/w{1, 64}@([-a-zA-Z0-9]{1,63}\.)+[-a-zA-Z0-9]{1,63}/;
+console.log(p.test(&#39;q@qq.com&#39;));//true
+console.log(p.test(&#39;q@qq&#39;));//false
+console.log(p.test(&#39;q@a.qq.com&#39;));//true</code></pre><ul>
+<li>Reference(Capture)</li>
+</ul>
+<p>Date Regular Expression: /(\d{4})-(\d{2})-(\d{2})/ (YYYY-MM-DD)</p>
+<p>exec(): 返回的数组中，第一项是与整个模式匹配的字符串，其他项是与模式中的捕获组匹配的字符串</p>
+<pre><code>console.log(/(\d{4})-(\d{2})-(\d{2})/.exec(&#39;2016-06-23&#39;));  //[&quot;2016-06-23&quot;, &quot;2016&quot;, &quot;06&quot;, &quot;23&quot;]</code></pre><p>replace():接收两个参数，第一个参数为待查找的内容，而第二个参数为替换的内容</p>
+<pre><code>console.log(&#39;2000-01-01&#39;.replace(/-/g,&#39;.&#39;));    //2000.01.01</code></pre><p><strong>Back Reference</strong></p>
+<p>Definition: 允许在正则表达式内部引用之前捕获分组匹配的文本，形式是\num，num表示所引用分组的编号，也可以用于建立前后联系</p>
+<pre><code>//重复字母
+/([a-z])\1/
+console.log(/([a-z])\1/.test(&#39;aa&#39;));//true
+console.log(/([a-z])\1/.test(&#39;ab&#39;));//false</code></pre><pre><code>//开始标签
+&lt;([^&gt;]+)&gt;
+//标签内容
+[\s\S]*?
+//匹配成对的标签
+/&lt;([^&gt;]+)&gt;[\s\S]*?&lt;\/\1&gt;/
+console.log(/&lt;([^&gt;]+)&gt;[\s\S]*?&lt;\/\1&gt;/.test(&#39;&lt;a&gt;123&lt;/a&gt;&#39;));//true
+console.log(/&lt;([^&gt;]+)&gt;[\s\S]*?&lt;\/\1&gt;/.test(&#39;&lt;a&gt;123&lt;/b&gt;&#39;));//false</code></pre><p><strong>Non-capturing</strong></p>
+<pre><code>console.log(/(abc){2}/.test(&#39;abcabc&#39;)); //true
+console.log(RegExp.$1); //&#39;abc&#39;
+console.log(/(?:abc){2}/.test(&#39;abcabc&#39;));   //true
+console.log(RegExp.$1); //&#39;&#39;</code></pre><p>Cannot use back reference</p>
+<pre><code>/(?:123)\1/.test(&#39;123123&#39;);//false
+/(123)\1/.test(&#39;123123&#39;);//true
+console.log(/(\d)(\d)(?:\d)(\d)(\d)/.exec(&#39;12345&#39;));    //[&quot;12345&quot;, &quot;1&quot;, &quot;2&quot;, &quot;4&quot;, &quot;5&quot;]</code></pre><h4 id="g-Select"><a href="#g-Select" class="headerlink" title="g. Select: |"></a>g. Select: |</h4><ul>
+<li><p>OR: From left to right, stop selecting once matched</p>
+</li>
+<li><p>IP address: consists of 3 ‘.’ and 4 segments of numbers</p>
+</li>
+</ul>
+<pre><code>(00)?\d; //0-9
+0?[1-9]\d;//10-99
+1\d{2};//100-199
+2[0-4]\d;//200-249
+25[0-5];//250-255
+//number(0-255)
+/(00)?\d|0?[1-9]\d|1\d{2}|2[0-4]\d|25[0-5]/;
+
+//ip地址
+var ip = /^(((00)?\d|0?[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.){3}\2$/;
+console.log(ip.test(&#39;1.1.1.1&#39;));//true
+console.log(ip.test(&#39;1.1.1&#39;));//false
+console.log(ip.test(&#39;256.1.1.1&#39;));//false</code></pre><ul>
+<li>Phone Number: 3 + 8, beginning with 0 or +86</li>
+</ul>
+<pre><code>//开头
+(0|\+86)?
+//前3位
+13\d|14[579]|15[0-35-9]|17[0135-8]|18\d
+//后8位
+\d{8}
+//手机号码
+var phone = /(0|\+86)?(13\d|14[579]|15[0-35-9]|17[0135-8]|18\d)\d{8}/;
+console.log(phone.test(&#39;13453250661&#39;));//true
+console.log(phone.test(&#39;1913250661&#39;));//false
+console.log(phone.test(&#39;1345325061&#39;));//false</code></pre><p><strong>Avoid repeated matching in selection</strong></p>
+<pre><code>a|[ab]
+[0-9]|\w</code></pre><h4 id="h-Assertion"><a href="#h-Assertion" class="headerlink" title="h. Assertion: |"></a>h. Assertion: |</h4><ul>
+<li>Word Boundary: \b</li>
+</ul>
+<pre><code>console.log(/\ban\b/.test(&#39;an apple&#39;));//true
+console.log(/\ban\b/.test(&#39;a an&#39;));//true
+console.log(/\ban\b/.test(&#39;an&#39;));//true
+console.log(/\ban\b/.test(&#39;and&#39;));//false
+console.log(/\ban\b/.test(&#39;ban&#39;));//false</code></pre><ul>
+<li>Start and End: ^$</li>
+</ul>
+<pre><code>//匹配第一个单词
+console.log(/^\w*/.exec(&#39;first word\nsecond word\nthird word&#39;));//[&#39;first&#39;]
+//匹配最后一个单词
+console.log(/\w*$/.exec(&#39;first word\nsecond word\nthird word&#39;));//[&#39;word&#39;]</code></pre><ul>
+<li><p>Trim():  ^ and $ are mostly to remove the redundant spaces in the start and the end，which is similar to trim() of String</p>
+</li>
+<li><p>Look-around</p>
+</li>
+</ul>
+<pre><code>console.log(/a(?=b)/.exec(&#39;abc&#39;));//[&#39;a&#39;]
+console.log(/a(?=b)/.exec(&#39;ac&#39;));//null
+console.log(/a(?!b)/.exec(&#39;abc&#39;));//null
+console.log(/a(?!b)/.exec(&#39;ac&#39;));//[&#39;a&#39;]
+console.log(/a(?=b)b/.exec(&#39;abc&#39;));//[&#39;ab&#39;]</code></pre><h4 id="i-Match-Mode"><a href="#i-Match-Mode" class="headerlink" title="i. Match Mode"></a>i. Match Mode</h4><ul>
+<li><p>i, m, g</p>
+</li>
+<li><p>i: ignore case</p>
+</li>
+</ul>
+<pre><code>console.log(/ab/.test(&#39;aB&#39;));//false
+console.log(/ab/i.test(&#39;aB&#39;));//true</code></pre><ul>
+<li>m: multiple lines</li>
+</ul>
+<pre><code>console.log(/world$/.test(&#39;hello world\n&#39;)); //false
+console.log(/world$/m.test(&#39;hello world\n&#39;)); //true
+console.log(/^b/.test(&#39;a\nb&#39;)); //false
+console.log(/^b/m.test(&#39;a\nb&#39;)); //true</code></pre><ul>
+<li>g: global</li>
+</ul>
+<pre><code>console.log(&#39;1a,2a,3a&#39;.replace(/a/,&#39;b&#39;));//&#39;1b,2a,3a&#39;
+console.log(&#39;1a,2a,3a&#39;.replace(/a/g,&#39;b&#39;));//&#39;1b,2b,3b&#39;</code></pre><h4 id="j-Priority"><a href="#j-Priority" class="headerlink" title="j. Priority"></a>j. Priority</h4><pre><code>//从上到下，优先级逐渐降低
+\                            转义符
+() (?!) (?=) []              括号、字符组、环视
+* + ? {n} {n,} {n,m}         量词
+^ $                          起始结束位置
+|                            选择</code></pre><h4 id="k-Limitation"><a href="#k-Limitation" class="headerlink" title="k. Limitation"></a>k. Limitation</h4><ol>
+<li>POSIX Character Class(only supports normal character class and excluding character class)</li>
+<li>Unicode: only supports Unicode character</li>
+<li>Match Beginning and Ending: only supports ^ and $</li>
+<li>Reverse Loop-around: not support</li>
+<li>Grouping: only supports 0-9 capturing group</li>
+<li>Not support single line mode or comment mode: only support m/i/g match mode</li>
+<li>Range of the mode</li>
+<li>Pure Text</li>
+</ol>
+</article><br><br><span class="next-post"><a href="/2020/04/30/LeetCode647/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
