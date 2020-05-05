@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>LeetCode560 | Geek Home</title><meta name="description"><meta name="generator" content="Geek Home"><meta name="author" content="Wu Daoyi"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Geek Home" title="Geek Home" itemprop="headline">Geek Home</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">LeetCode560</h1><span class="page-tag-anchor"><a href="/tags/JavaScript, Array, HashTable" itemprop="url">#JavaScript, Array, HashTable
+&nbsp;&nbsp;</a></span><span class="post-meta"></span><br><br><h2 id="560-Subarray-Sum-Equals-K"><a href="#560-Subarray-Sum-Equals-K" class="headerlink" title="560. Subarray Sum Equals K"></a>560. Subarray Sum Equals K</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given an array of integers and an integer <strong>k</strong>, you need to find the total number of continuous subarrays whose sum equals to <strong>k</strong>.</p>
+<p><strong>Example:</strong></p>
+<pre><code>Input:nums = [1,1,1], k = 2
+Output: 2</code></pre><p><strong>Notes</strong></p>
+<pre><code>1. The length of the array is in range [1, 20,000].
+2. The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].</code></pre><h3 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h3><ol>
+<li><p>Brute Force</p>
+</li>
+<li><p>HashMap(From Discussion on LeetCode)</p>
+</li>
+</ol>
+<p>The key idea of how we can solve this problem in <strong>O(N)</strong> time using hashmap is to understand how we can correctly use the information from 1 iteration of calculating sums.</p>
+<p>Something to understand first is, when <code>Sum_i = #0 + #1 + #2 .... + #i = 6</code>, and <code>Sum_k #0 + #1 + #2 ... + #k = 10</code>, its pretty obvious that between #i to #k is equal to 4, and we can write that mathmatically to <code>Sum_k - Sum_i = Sumi_to_k</code></p>
+<p>So In order to find k we are basically trying to find a pair of Sum_i and Sum_k such that <code>Sum_k - Sum_i = k</code>. Since we are only iterating the array once and calculating the sum from left to right accumatively, we can keep a record of all the sums up to index i, that is Sum0, Sum1…Sumi. For each new sum, we can check if there is a previous Sum such that Sum_current - Sum_prev = k. In order to find what is the “old_index”, we can just change the formula to Sum_curren - k = Sum_old and look up from our record to see if we find a matching pair. If we did, bingo, that means we found a valid subarray.</p>
+<h3 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h3><ol>
+<li>Brute Force</li>
+</ol>
+<pre><code>/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var subarraySum = function(nums, k) {
+    if(nums.length === 1)
+        return nums[0] === k ? 1 : 0;
+
+    let count = 0;
+
+    for(let i=0;i&lt;nums.length;i++){
+        let sum = 0;
+        for(let j=i;j&lt;nums.length;j++){
+            sum += nums[j];
+            if(sum === k)
+                count++;
+        }
+    }
+
+    return count; 
+};</code></pre><ol start="2">
+<li>HashMap</li>
+</ol>
+<pre><code>/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var subarraySum = function(nums, k) {
+    let map = new Map();
+    let sum = 0;
+    let count = 0;
+    map.set(0,1);
+
+    for(let i=0;i&lt;nums.length;i++){
+        sum += nums[i];
+        if(map.has(sum-k))
+            count += map.get(sum-k);
+        if(map.has(sum))
+            map.set(sum, map.get(sum) + 1);
+        else
+            map.set(sum, 1);
+    }
+
+    return count;
+};</code></pre></article><br><br><span class="next-post"><a href="/2020/05/04/LeetCode32/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
