@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>LeetCode152 | Geek Home</title><meta name="description"><meta name="generator" content="Geek Home"><meta name="author" content="Wu Daoyi"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Geek Home" title="Geek Home" itemprop="headline">Geek Home</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">LeetCode152</h1><span class="page-tag-anchor"><a href="/tags/Array, Dynamic Programming" itemprop="url">#Array, Dynamic Programming
+&nbsp;&nbsp;</a></span><span class="post-meta"></span><br><br><h3 id="152-Maximum-Product-Subarray"><a href="#152-Maximum-Product-Subarray" class="headerlink" title="152. Maximum Product Subarray"></a>152. Maximum Product Subarray</h3><h4 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h4><p>Given an integer array <strong>nums</strong>, find the contiguous subarray within an array (containing at least one number) which has the largest product.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: [2,3,-2,4]
+Output: 6
+Explanation: [2,3] has the largest product 6.</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>Input: [-2,0,-1]
+Output: 0
+Explanation: The result cannot be 2, because [-2,-1] is not a subarray.</code></pre><h4 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h4><ol>
+<li>Brute Force: O(N2)</li>
+</ol>
+<pre><code>/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct = function(nums) {
+    let maxProd = nums[0];
+    let tmpProd = 1;
+
+    for(let i=0;i&lt;nums.length;i++){
+        tmpProd = nums[i];
+        for(let j=i+1;j&lt;nums.length;j++){
+            tmpProd *= nums[j];
+            maxProd = Math.max(tmpProd, maxProd);
+        }
+        maxProd = Math.max(nums[i], maxProd);
+    }
+
+    return maxProd;
+};</code></pre><ol start="2">
+<li>Dynamic Programming: O(N)</li>
+</ol>
+<pre><code>/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct = function(nums) {
+    let dp = new Array(nums.length);
+
+    for(let i=0;i&lt;nums.length;i++){
+        if(i === 0){
+            dp[i] = [nums[i], nums[i]];
+        }
+        else{
+            let current = [
+                Math.max(nums[i], nums[i]*dp[i-1][0], nums[i]*dp[i-1][1]),
+                Math.min(nums[i], nums[i]*dp[i-1][0], nums[i]*dp[i-1][1])
+            ];
+            dp[i] = current;
+        }
+    }
+    return Math.max(...dp.map(a =&gt; Math.max(a[0], a[1])));
+};</code></pre></article><br><br><span class="next-post"><a href="/2020/05/05/LeetCode560/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
