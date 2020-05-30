@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>LeetCode877 | Geek Home</title><meta name="description"><meta name="generator" content="Geek Home"><meta name="author" content="Wu Daoyi"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Geek Home" title="Geek Home" itemprop="headline">Geek Home</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">LeetCode877</h1><span class="page-tag-anchor"><a href="/tags/JavaScript, Dynamic Programming" itemprop="url">#JavaScript, Dynamic Programming
+&nbsp;&nbsp;</a></span><span class="post-meta"></span><br><br><h3 id="877-Stone-Games"><a href="#877-Stone-Games" class="headerlink" title="877. Stone Games"></a>877. Stone Games</h3><h4 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h4><p>Alex and Lee play a game with piles of stones.  There are an even number of piles <strong>arranged in a row,</strong> and each pile has a positive integer number of stones piles[i].</p>
+<p>The objective of the game is to end with the most stones.  The total number of stones is odd, so there are no ties.</p>
+<p>Alex and Lee take turns, with Alex starting first.  Each turn, a player takes the entire pile of stones from either the beginning or the end of the row.  This continues until there are no more piles left, at which point the person with the most stones wins.</p>
+<p>Assuming Alex and Lee play optimally, return True if and only if Alex wins the game.</p>
+<p><strong>Example 1</strong></p>
+<pre><code>Input: [5,3,4,5]
+Output: true
+Explanation: 
+Alex starts first, and can only take the first 5 or the last 5.
+Say he takes the first 5, so that the row becomes [3, 4, 5].
+If Lee takes 3, then the board is [4, 5], and Alex takes 5 to win with 10 points.
+If Lee takes the last 5, then the board is [3, 4], and Alex takes 4 to win with 9 points.
+This demonstrated that taking the first 5 was a winning move for Alex, so we return true.</code></pre><p><strong>Notes</strong></p>
+<ol>
+<li>2 &lt;= piles.length &lt;= 500</li>
+<li>piles.length is even.</li>
+<li>1 &lt;= piles[i] &lt;= 500</li>
+<li>sum(piles) is odd.</li>
+</ol>
+<h4 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h4><pre><code>/**
+ * @param {number[]} piles
+ * @return {boolean}
+ */
+var stoneGame = function(piles) {
+    const length = piles.length;
+
+    let willAlexWin = (start, end, turn, alexSum, leeSum) =&gt; {
+        if(start &gt; end || turn &gt; length - 1)
+            return alexSum &gt; leeSum;
+
+        if(turn % 2 === 1){
+            if(piles[start] &gt; piles[end])
+                return willAlexWin(start, end, turn + 1, piles[start] + alexSum, leeSum);
+            else
+                return willAlexWin(start, end, turn + 1, piles[end] + alexSum, leeSum);
+        }else{
+
+            if(piles[start] &gt; piles[end])
+                return willAlexWin(start, end, turn + 1, alexSum, piles[start] + leeSum);
+            else
+                return willAlexWin(start, end, turn + 1, alexSum, piles[end] + leeSum);
+        }
+    }
+
+    return willAlexWin(0, length-1, 1, 0, 0);
+
+};</code></pre></article><br><br><span class="next-post"><a href="/2020/05/27/LeetCode239/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
