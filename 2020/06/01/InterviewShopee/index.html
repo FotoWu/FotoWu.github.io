@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>InterviewShopee | Geek Home</title><meta name="description"><meta name="generator" content="Geek Home"><meta name="author" content="Wu Daoyi"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Geek Home" title="Geek Home" itemprop="headline">Geek Home</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">InterviewShopee</h1><span class="page-tag-anchor"><a href="/tags/Interview, Shopee, Server, Intern" itemprop="url">#Interview, Shopee, Server, Intern
+&nbsp;&nbsp;</a></span><span class="post-meta"></span><br><br><h3 id="First-Round"><a href="#First-Round" class="headerlink" title="First Round"></a>First Round</h3><ol>
+<li>OSI 前四层的作用</li>
+</ol>
+<p>应用层：为应用程序提供网络服务 HTTP/FTP/SMTP</p>
+<p>表示层：数据格式化，加密、解密 Telnet/Rlogin/SNMP/Gopher</p>
+<p>表达层：建立、维护、管理会话连接 SMTP, DNS</p>
+<p><strong>前四层</strong></p>
+<p>传输层：建立、维护、管理端到端链接 TCP/UDP</p>
+<p>网络层：IP寻址和路由选择 IP/ICMP/ARP</p>
+<p>数据链路层：控制网络层与物理层之间通信 Ethernet</p>
+<p>物理层：比特流传输 IEEE 802.1A</p>
+<ol start="2">
+<li>TCP Sliding Window</li>
+</ol>
+<p>一句话：提供可靠性和流量控制（确保发送的segment顺序不出错）</p>
+<p>动态调整滑动窗口：根据接收端的接受情况动态调整Window size，从而控制流量</p>
+<ol start="3">
+<li>TCP 三次握手和四次挥手</li>
+</ol>
+<p>三次握手：</p>
+<ul>
+<li><p>Why? 防止已过期的连接请求报文传送到服务器而产生错误</p>
+</li>
+<li><p>How? </p>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/30313526/83394642-7e6f6500-a42b-11ea-8858-ec72ce048f51.jpg" alt="TCP-3way"></p>
+<p>四次挥手：</p>
+<p><img src="https://user-images.githubusercontent.com/30313526/83399140-43712f80-a433-11ea-916e-80458eba262a.jpg" alt="TCP-4way"></p>
+<p><strong>为什么建立连接是三次握手，而关闭连接却是四次挥手呢？</strong></p>
+<p>确认第三次挥手已送达，避免超时重传。这是因为服务端在LISTEN状态下，收到建立连接请求的SYN报文后，把ACK和SYN放在一个报文里发送给客户端。而关闭连接时，当收到对方的FIN报文时，仅仅表示对方不再发送数据了但是还能接收数据，己方是否现在关闭发送数据通道，需要上层应用来决定，因此，己方ACK和FIN一般都会分开发送。</p>
+<ol start="4">
+<li>TIME_WAIT &amp; CLOSE_WAIT</li>
+</ol>
+<p>TIME_WAIT: TIME_WAIT 是主动关闭链接时形成的，等待2MSL时间，约4分钟。主要是防止最后一个ACK丢失，让第四次挥手到达。  由于TIME_WAIT 的时间会非常长，因此server端应尽量减少主动关闭连接</p>
+<p>CLOSE_WAIT: CLOSE_WAIT是被动关闭连接是形成的。根据TCP状态机，服务器端收到客户端发送的FIN，则按照TCP实现发送ACK，因此进入CLOSE_WAIT状态。但如果服务器端不执行close()，就不能由CLOSE_WAIT迁移到LAST_ACK，则系统中会存在很多CLOSE_WAIT状态的连接。此时，可能是系统忙于处理读、写操作，而未将已收到FIN的连接，进行close。此时，recv/read已收到FIN的连接socket，会返回0。第二次挥手后还没发出第三次挥手服务器的状态。</p>
+<ol start="5">
+<li>tcpdump</li>
+</ol>
+<p>特点：免费的网络分析工具，尤其其提供了源代码，公开了接口，因此具备很强的可扩展性，对于网络维护和入侵者都是非常有用的工具。tcpdump使用参数指定要监视数据包的类型、地址、端口等，需要root权限</p>
+<p>用例：<br>-i：参数指定tcpdump监听的网络界面<br>-c：参数指定要监听的数据包数量<br>-w：参数指定将监听到的数据包写入文件中保存</p>
+</article><br><br><span class="next-post"><a href="/2020/05/30/LeetCode877/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
