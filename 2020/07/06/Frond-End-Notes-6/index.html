@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Frond-End-Notes-6 | Geek Home</title><meta name="description"><meta name="generator" content="Geek Home"><meta name="author" content="Wu Daoyi"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Geek Home" title="Geek Home" itemprop="headline">Geek Home</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">Frond-End-Notes-6</h1><span class="post-meta"></span><br><br><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="1-单行溢出和多行溢出"><a href="#1-单行溢出和多行溢出" class="headerlink" title="1. 单行溢出和多行溢出"></a>1. 单行溢出和多行溢出</h3><pre><code>//单行溢出代码
+overflow:hidden; 
+white-space:nowrap; 
+text-overflow:ellipsis;</code></pre><pre><code>//多行溢出代码
+display:-webkit-box; overflow:hidden;
+text-overflow:ellipsis; word-break:break-all;
+-webkit-box-orient:vertical; //子元素应该被水平或垂直排列
+-webkit-line-clamp:3; //3行后显示省略号</code></pre><h3 id="2-bfc布局是什么"><a href="#2-bfc布局是什么" class="headerlink" title="2. bfc布局是什么"></a>2. bfc布局是什么</h3><p>块格式化上下文（Block Formatting Context，BFC） 是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。</p>
+<p>块格式化上下文包含创建它的元素内部的所有内容.</p>
+<ul>
+<li><p>根元素(<html>)</p>
+</li>
+<li><p>浮动元素（元素的 float 不是 none）</p>
+</li>
+<li><p>绝对定位元素（元素的 position 为 absolute 或 fixed）</p>
+</li>
+<li><p>行内块元素（元素的 display 为 inline-block）</p>
+</li>
+<li><p>表格单元格（元素的 display为 table-cell，HTML表格单元格默认为该值）</p>
+</li>
+<li><p>表格标题（元素的 display 为 table-caption，HTML表格标题默认为该值）</p>
+</li>
+<li><p>匿名表格单元格元素（元素的 display为 table、table-row、 table-row-group、table-header-group、table-footer-group（分别是HTML table、row、tbody、thead、tfoot的默认属性）或 inline-table）</p>
+</li>
+<li><p>overflow 值不为 visible 的块元素</p>
+</li>
+<li><p>display 值为 flow-root 的元素</p>
+</li>
+<li><p>contain 值为 layout、content或 paint 的元素</p>
+</li>
+<li><p>弹性元素（display为 flex 或 inline-flex元素的直接子元素）</p>
+</li>
+<li><p>网格元素（display为 grid 或 inline-grid 元素的直接子元素）</p>
+</li>
+<li><p>多列容器（元素的 column-count 或 column-width 不为 auto，包括 column-count 为 1）</p>
+</li>
+<li><p>column-span 为 all 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（标准变更，Chrome bug）。</p>
+</li>
+</ul>
+<p>块格式化上下文对浮动定位（<strong>float</strong>）与清除浮动（<strong>clear</strong>）都很重要。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其它BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（Margin collapsing）也只会发生在属于同一BFC的块级元素之间。</p>
+<h3 id="3-什么是闭包，什么场景会用到闭包？"><a href="#3-什么是闭包，什么场景会用到闭包？" class="headerlink" title="3. 什么是闭包，什么场景会用到闭包？"></a>3. 什么是闭包，什么场景会用到闭包？</h3><pre><code>由于在JS中，变量的作用域属于函数作用域，在函数执行后作用域就会被清理、内存也随之回收，但是由于闭包是建立在一个函数内部的子函数，由于其可访问上级作用域，即使上级函数执行完，作用域也不会随之销毁，这时的子函数——也就是闭包，便拥有了访问上级作用域中的变量的权限，即使上级函数执行完后作用域内的值也不会被销毁。</code></pre><p><strong>闭包解决了什么问题？</strong></p>
+<pre><code>由于闭包可以缓存上级作用域，那么就使得函数外部打破了“函数作用域”的束缚，可以访问函数内部的变量。以平时使用的Ajax成功回调为例，这里其实就是个闭包，由于上述的特性，回调就拥有了整个上级作用域的访问和操作能力，提高了极大的便利。</code></pre><p><strong>什么场景会用到闭包？</strong></p>
+<pre><code>闭包随处可见，一个Ajax请求的成功回调，一个事件绑定的回调方法，一个setTimeout的延时回调，或者一个函数内部返回另一个匿名函数，这些都是闭包。简而言之，无论使用何种方式对函数类型的值进行传递，当函数在别处被调用时都有闭包的身影。</code></pre></article><br><br><span class="next-post"><a href="/2020/06/03/LeetCode767/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
