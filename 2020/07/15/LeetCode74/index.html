@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>LeetCode74 | Geek Home</title><meta name="description"><meta name="generator" content="Geek Home"><meta name="author" content="Wu Daoyi"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Geek Home" title="Geek Home" itemprop="headline">Geek Home</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">LeetCode74</h1><span class="page-tag-anchor"><a href="/tags/JavaScript, Binary Search" itemprop="url">#JavaScript, Binary Search
+&nbsp;&nbsp;</a></span><span class="post-meta"></span><br><br><h3 id="74-Search-a-2D-Matrix"><a href="#74-Search-a-2D-Matrix" class="headerlink" title="74. Search a 2D Matrix"></a>74. Search a 2D Matrix</h3><h4 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h4><p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
+<ul>
+<li><p>Integers in each row are sorted from left to right.</p>
+</li>
+<li><p>The first integer of each row is greater than the last integer of the previous row.</p>
+</li>
+</ul>
+<p><strong>Example 1</strong></p>
+<pre><code>Input:
+matrix = [
+  [1,   3,  5,  7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 50]
+]
+target = 3
+Output: true</code></pre><p><strong>Example 2</strong></p>
+<pre><code>Input:
+matrix = [
+  [1,   3,  5,  7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 50]
+]
+target = 13
+Output: false</code></pre><h4 id="Thinking-amp-Coding"><a href="#Thinking-amp-Coding" class="headerlink" title="Thinking &amp; Coding"></a>Thinking &amp; Coding</h4><ol>
+<li>First, traverse the numbers in each row, to tell whether the target is hidden in this row, we need to compare the first number of different rows and will face three results: <strong>1.Target is in the first row, 2.Target is in the last row, 3.Target is in the middle row(not first and not last)</strong> Given these three assumptions, we traverse innerly to find whether the target exists in the 2D-matrix.</li>
+</ol>
+<pre><code>var searchMatrix = function(matrix, target) {
+    if(matrix.length===0)
+        return false;
+
+    const row = matrix.length;
+    const col = matrix[0].length;
+    if(target&lt;matrix[0][0]||target&gt;matrix[row-1][col-1]){
+        return false;
+    }
+
+    for(let i=0;i&lt;row;i++){
+        if(matrix[i][0]===target)
+            return true;
+        else if(row===1||(i+1&lt;row &amp;&amp; matrix[i][0]&lt;target &amp;&amp; matrix[i+1][0]&gt;target)||i===row-1){
+            for(let j=1;j&lt;col;j++){
+                if(matrix[i][j]===target)
+                    return true;
+            }
+        }
+    }
+    return false;
+};</code></pre><ol start="2">
+<li>Binary Search: Flatten the matrix and consider it as an array</li>
+</ol>
+<pre><code>var searchMatrix = function(matrix, target) {
+    if(matrix.length===0||matrix[0].length===0)
+        return false;
+
+    const row = matrix.length;
+    const col = matrix[0].length;
+    let start = 0;
+    let end = row*col - 1;
+
+    while(start+1&lt;end){
+        let mid = start+Math.floor((end-start)/2);
+        let val = matrix[Math.floor(mid/col)][mid%col];
+
+        if(val&lt;target){
+            start = mid;
+        }else if(val&gt;target){
+            end = mid;
+        }else{
+            return true;
+        }
+    }
+
+    if(matrix[Math.floor(start/col)][start%col]===target||matrix[Math.floor(end/col)][end%col]===target){
+        return true;
+    }
+    return false;
+};</code></pre></article><br><br><span class="next-post"><a href="/2020/07/10/LeetCode133/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
