@@ -288,7 +288,11 @@ Object.keys()——自身非继承的可枚举属性（除Symbol）
 Object.getOwnPropertyNames()——自身所有属性键名（包括不可枚举、除Symbol）
 Object.getOwnPropertySymbols()——自身的所有 
 Symbol 属性的键名Reflect.ownKeys()——自身的所有键名</code></pre><h3 id="7-HTTP缓存（精）"><a href="#7-HTTP缓存（精）" class="headerlink" title="7. HTTP缓存（精）"></a>7. HTTP缓存（精）</h3><p>Header：</p>
-<p>```<br>Expires: 响应头，代表该资源的过期时间<br>Cache-Control: 请求/响应头，缓存控制，精确控制缓存策略<br>If-Modified-Since: 请求头，资源最近修改时间，浏览器-&gt;服务器<br>Last-Modified: 响应头，资源最近修改时间，服务器-&gt;浏览器<br>Etag: 响应头，资源唯一标识，服务器-&gt;浏览器<br>If-None-Match: 请求头，缓存资源标识，浏览器-&gt;服务器<br>``</p>
-<p>配对使用的字段：<br>If-Modified-Since和Last-Modified<br>If-None-Match和Etag</p>
+<pre><code>Expires: 响应头，代表该资源的过期时间
+Cache-Control: 请求/响应头，缓存控制，精确控制缓存策略
+If-Modified-Since: 请求头，资源最近修改时间，浏览器-&gt;服务器
+Last-Modified: 响应头，资源最近修改时间，服务器-&gt;浏览器
+Etag: 响应头，资源唯一标识，服务器-&gt;浏览器
+If-None-Match: 请求头，缓存资源标识，浏览器-&gt;服务器</code></pre><p>配对使用的字段：<br>If-Modified-Since和Last-Modified<br>If-None-Match和Etag</p>
 <p>Cache-Control控制粒度更细，包括max-age, no-cache, public, private, no-store等等</p>
 </article><br><br><span class="next-post"><a href="/2020/06/03/LeetCode767/" itemprop="url">Older Post ⇒</a></span><span class="prev-post"><a href="/2020/07/07/InterviewBytedance/" itemprop="url">⇐ Next Post </a></span><br><br><br></main></body></html>
