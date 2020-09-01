@@ -19,4 +19,8 @@
 <p>应用：当访问对象的一个属性时，首先查找对象本身，找到则返回；若未找到，则继续查找其原型对象的属性。若整个原型链未找到则返回undefined。</p>
 <h3 id="4-作用域链和原型链的区别"><a href="#4-作用域链和原型链的区别" class="headerlink" title="4. 作用域链和原型链的区别"></a>4. 作用域链和原型链的区别</h3><p>作用域链：闭包相关，自顶向下找变量，没找到返回ReferenceError（引用错误）</p>
 <p>原型链：继承相关，自底向上找原型（属性),没找到返回undefined</p>
-<h3 id="5-事件机制"><a href="#5-事件机制" class="headerlink" title="5. 事件机制"></a>5. 事件机制</h3></article><br><br><span class="next-post"><a href="/2020/08/13/Front-End-Notes-7-CV-Related/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
+<h3 id="5-事件机制"><a href="#5-事件机制" class="headerlink" title="5. 事件机制"></a>5. 事件机制</h3><p>事件监听：使用事件监听函数element.addEventListener(<event-name>, <callback>, <use-capture>);，在 element 这个对象上面添加一个事件监听器，当监听到有 事件发生的时候，调用 这个回调函数。至于<use-capture>这个参数，表示该事件监听是在“捕获”阶段中监听（设置为 true）还是在“冒泡”阶段中监听（设置为 false）。事件冒泡是从最内层的元素开始发生，一直向上传播，直到document对象。事件捕获是从最外层开始发生，直到最内层的元素。</p>
+<p>事件顺序：这两种方式确定了事件执行的前后顺序，只不过后来W3C对DOM2的事件模型给出了一个规范：首先进入事件捕获阶段-&gt;达到元素后-&gt;进入事件冒泡阶段。</p>
+<p>事件代理：事件绑定后，检测顺序就会从被绑定的DOM下滑到触发的元素，再冒泡会绑定的DOM上。也就是说，如果你监听了一个DOM节点，那也就等于你监听了其所有的后代节点。</p>
+<p>代理：只监听父节点的事件触发，以来代理对其后代节点的监听，而你需要做的只是通过currentTarget属性得到触发元素并作出回应。</p>
+</article><br><br><span class="next-post"><a href="/2020/08/13/Front-End-Notes-7-CV-Related/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
