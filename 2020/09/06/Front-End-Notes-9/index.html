@@ -2,6 +2,10 @@
 &nbsp;&nbsp;</a></span><span class="post-meta"></span><br><br><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="1-浮动：为什么会出现浮动？什么时候需要清除浮动？清除浮动的方式？"><a href="#1-浮动：为什么会出现浮动？什么时候需要清除浮动？清除浮动的方式？" class="headerlink" title="1. 浮动：为什么会出现浮动？什么时候需要清除浮动？清除浮动的方式？"></a>1. 浮动：为什么会出现浮动？什么时候需要清除浮动？清除浮动的方式？</h3><p>为什么：浮动元素碰到包含它的边框或者浮动元素在边框停留。由于浮动元素不在文档流中，所以文档流的块框表现得就像浮动框不存在一样，浮动元素会漂浮在文档流的块框上。</p>
 <p>浮动带来的问题：<br>1)父元素的高度无法被撑开，影响与父元素同级的元素<br>2)与浮动元素同级的非浮动元素（内联元素）会跟随其后<br>3)若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构。</p>
 <p>清除浮动方式：<br>1)父级div定义height<br>2)最后一个浮动元素后加空div标签 并添加样式clear:both。<br>3)包含浮动元素的父标签添加样式overflow为hidden或auto。</p>
+<h3 id="2-position"><a href="#2-position" class="headerlink" title="2. position"></a>2. position</h3><p>a. static（静态定位）：默认值。<strong>没有定位</strong>，元素出现在正常的流中（<strong>忽略 top, bottom, left, right 或者 z-index 声明</strong>）。</p>
+<p>b. relative（相对定位）：生成相对定位的元素，通过top,bottom,left,right的设置相对于<strong>其最近的父元素</strong>进行定位。可通过z-index进行层次分级。</p>
+<p>c. absolute（绝对定位）：生成绝对定位的元素，<strong>相对于 static 定位以外的第一个父元素进行定位</strong>。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。可通过z-index进行层次分级。<strong>与relative的区别是其在正常流中的位置不再存在。</strong></p>
+<p>d. fixed（固定定位）：生成绝对定位的元素，相对于<strong>浏览器窗口</strong>进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。可通过z-index进行层次分级。</p>
 <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="1-cookie、localStorage和sessionStorage"><a href="#1-cookie、localStorage和sessionStorage" class="headerlink" title="1. cookie、localStorage和sessionStorage"></a>1. cookie、localStorage和sessionStorage</h3><table>
 <thead>
 <tr>
@@ -36,4 +40,21 @@
 <td>同localStorage</td>
 </tr>
 </tbody></table>
+<h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><h3 id="1-箭头函数与函数的区别"><a href="#1-箭头函数与函数的区别" class="headerlink" title="1. 箭头函数与函数的区别"></a>1. 箭头函数与函数的区别</h3><p>关于箭头函数的参数：</p>
+<p>① 如果箭头函数没有参数，直接写一个空括号即可。</p>
+<p>② 如果箭头函数的参数只有一个，也可以省去包裹参数的括号。</p>
+<p>③ 如果箭头函数有多个参数，将参数依次用逗号(,)分隔，包裹在括号中即可。</p>
+<p>区别：</p>
+<p>a. 箭头函数的定义要比普通函数定义简洁、清晰得多，很快捷。</p>
+<p>b. 箭头函数没有自己的this，它会捕获自己在定义时（注意，是定义时，不是调用时）所处的外层执行环境的this，并继承这个this值。所以，箭头函数中this的指向在它被定义的时候就已经确定了，之后永远不会改变。</p>
+<p>c. 箭头函数继承而来的this指向永远不变</p>
+<p>d. .call()/.apply()/.bind()无法改变箭头函数中this的指向</p>
+<p>e. 箭头函数不能作为构造函数使用</p>
+<p>f. 箭头函数没有自己的arguments</p>
+<p>g. 箭头函数没有原型prototype</p>
+<p>h. 箭头函数不能用作Generator函数，不能使用yeild关键字</p>
+<h3 id="2-this绑定（call-apply-bind区别）"><a href="#2-this绑定（call-apply-bind区别）" class="headerlink" title="2. this绑定（call/apply/bind区别）"></a>2. this绑定（call/apply/bind区别）</h3><p>a. call( thisValue , arg1, arg2, … )</p>
+<p>b. pply( thisValue , [arg1, arg2, …] )</p>
+<p>c. bind( thisArg[, arg1[, arg2[, …]]])</p>
+<p>call和apply它们两个是改变this的指向之后<strong>立即调用该函数</strong>，而bind则不同，它是<strong>创建一个新函数</strong>，我们必须手动去调用它。</p>
 </article><br><br><span class="next-post"><a href="/2020/09/02/InterviewByXiaomi/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
