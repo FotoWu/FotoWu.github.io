@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Front-End-Notes-9 | Geek Home</title><meta name="description"><meta name="generator" content="Geek Home"><meta name="author" content="Wu Daoyi"><meta name="keywords"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="128x128" href="/images/favicon-128.png"><link rel="icon" type="image/png" sizes="196x196" href="/images/favicon-196x196.png"><meta name="msapplication-TileColor" content="#FFFFFF"><meta name="msapplication-TileImage" content="mstile-144x144.png"><meta name="msapplication-square70x70logo" content="mstile-70x70.png"><meta name="msapplication-square150x150logo" content="mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="mstile-310x150.png"><meta name="msapplication-square310x310logo" content="mstile-310x310.png"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><div class="logo"></div><h1><a href="/" alt="Geek Home" title="Geek Home" itemprop="headline">Geek Home</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/ " alt="home" title="home" itemprop="url">home</a></li><li itemprop="name"><a href="/articles" alt="articles" title="articles" itemprop="url">articles</a></li><li itemprop="name"><a href="/author" alt="author" title="author" itemprop="url">author</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline" class="post-heading">Front-End-Notes-9</h1><span class="page-tag-anchor"><a href="/tags/HTML, CSS, JavaScript, Web" itemprop="url">#HTML, CSS, JavaScript, Web
+&nbsp;&nbsp;</a></span><span class="post-meta"></span><br><br><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="1-浮动：为什么会出现浮动？什么时候需要清除浮动？清除浮动的方式？"><a href="#1-浮动：为什么会出现浮动？什么时候需要清除浮动？清除浮动的方式？" class="headerlink" title="1. 浮动：为什么会出现浮动？什么时候需要清除浮动？清除浮动的方式？"></a>1. 浮动：为什么会出现浮动？什么时候需要清除浮动？清除浮动的方式？</h3><p>为什么：浮动元素碰到包含它的边框或者浮动元素在边框停留。由于浮动元素不在文档流中，所以文档流的块框表现得就像浮动框不存在一样，浮动元素会漂浮在文档流的块框上。</p>
+<p>浮动带来的问题：<br>1)父元素的高度无法被撑开，影响与父元素同级的元素<br>2)与浮动元素同级的非浮动元素（内联元素）会跟随其后<br>3)若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构。</p>
+<p>清除浮动方式：<br>1)父级div定义height<br>2)最后一个浮动元素后加空div标签 并添加样式clear:both。<br>3)包含浮动元素的父标签添加样式overflow为hidden或auto。</p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="1-cookie、localStorage和sessionStorage"><a href="#1-cookie、localStorage和sessionStorage" class="headerlink" title="1. cookie、localStorage和sessionStorage"></a>1. cookie、localStorage和sessionStorage</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Cookie</th>
+<th>localStorage</th>
+<th>sessionStorage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据的生命期</td>
+<td>一般由服务器生成，可设置失效时间。如果在浏览器端生成Cookie，默认是关闭浏览器后失效</td>
+<td>除非被清除，否则永久保存</td>
+<td>仅在当前会话下有效，关闭页面或浏览器后被清除</td>
+</tr>
+<tr>
+<td>存放数据大小</td>
+<td>4K左右</td>
+<td>一般为5MB</td>
+<td></td>
+</tr>
+<tr>
+<td>与服务器端通信</td>
+<td>每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td>
+<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
+<td></td>
+</tr>
+<tr>
+<td>易用性</td>
+<td>需要程序员自己封装，源生的Cookie接口不友好</td>
+<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
+<td></td>
+</tr>
+</tbody></table>
+</article><br><br><span class="next-post"><a href="/2020/09/02/InterviewByXiaomi/" itemprop="url">Older Post ⇒</a></span><br><br><br></main></body></html>
