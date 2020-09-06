@@ -57,4 +57,13 @@
 <p>b. apply( thisValue , [arg1, arg2, …] )</p>
 <p>c. bind( thisArg[, arg1[, arg2[, …]]])</p>
 <p>call和apply它们两个是改变this的指向之后<strong>立即调用该函数</strong>，而bind则不同，它是<strong>创建一个新函数</strong>，我们必须手动去调用它。</p>
+<h3 id="3-事件循环机制"><a href="#3-事件循环机制" class="headerlink" title="3. 事件循环机制"></a>3. 事件循环机制</h3><p>在 JavaScript 事件循环机制中，使用到了三种数据对象，分别是栈（Stack）、堆（Heap）和队列（Queue）。</p>
+<p>在 JavaScript 事件循环机制中，使用的栈数据结构便是执行上下文栈，每当有函数被调用时，便会创建相对应的执行上下文并将其入栈；使用到堆数据结构主要是为了表示一个大部分非结构化的内存区域存放对象；使用到的队列数据结构便是任务队列，主要用于存放异步任务。</p>
+<p>任务队列：包含宏任务和微任务</p>
+<p>宏任务包括：setTimeout、setInterval、I/O、UI rendering<br>微任务包括：process.nextTick、Promise、Object.observe（已废弃）、MutationObserver（html5新特性）</p>
+<p>即在宏任务队列中，各个队列的优先级为 <strong>setTimeout &gt; setInterval &gt; I/O</strong> 在微任务队列中，各个队列的优先级为 <strong>Promise &gt; Object.observe &gt; MutationObserver</strong></p>
+<p>流程：</p>
+<p>a. 主线程执行JavaScript整体代码，形成执行上下文栈，当遇到各种任务源时将其所指定的异步任务挂起(Pending)，接收到响应结果后将异步任务放入对应的任务队列中，直到执行上下文栈只剩全局上下文。</p>
+<p>b. 将微任务队列中的所有任务队列按优先级、单个任务队列的异步任务入栈并执行，直到清空所有的微任务队列；</p>
+<p>c. 将宏任务队列中优先级最高的任务队列中的异步任务入栈并执行；<br>d. 重复第 2 3 步骤，直到清空所有的宏任务队列和微任务队列，全局上下文出栈。</p>
 </article><br><br><span class="next-post"><a href="/2020/09/02/InterviewXiaomi/" itemprop="url">Older Post ⇒</a></span><span class="prev-post"><a href="/2020/09/06/InterviewDidi/" itemprop="url">⇐ Next Post </a></span><br><br><br></main></body></html>
